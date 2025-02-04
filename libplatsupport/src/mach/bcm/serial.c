@@ -1,7 +1,7 @@
 /*
  * Copyright 2017, Data61, CSIRO (ABN 41 687 119 230)
  * Copyright (C) 2021, Hensoldt Cyber GmbH
- * Copyright 2022, Technology Innovation Institute
+ * Copyright 2022, Unikie
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */

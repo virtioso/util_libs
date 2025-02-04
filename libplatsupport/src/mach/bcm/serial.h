@@ -1,5 +1,5 @@
 /*
- * Copyright 2022, Technology Innovation Institute
+ * Copyright 2022, Unikie
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
