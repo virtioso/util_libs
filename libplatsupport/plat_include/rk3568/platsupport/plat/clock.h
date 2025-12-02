@@ -3,6 +3,14 @@
  *
  * SPDX-License-Identifier: BSD-2-Clause
  */
+
 #pragma once
 
-#define RK_TIMER_PATH "/rktimer@ff850000"
+enum clk_id {
+    CLK_MASTER,
+    NCLOCKS,
+};
+
+enum clock_gate {
+    NCLKGATES
+};
