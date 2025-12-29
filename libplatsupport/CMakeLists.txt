@@ -118,6 +118,7 @@ endif()
 if(KernelPlatformQEMUArmVirt
    OR KernelPlatformQuartz64
    OR KernelPlatformIMX93
+   OR KernelPlatformOrinAGX
 )
     if(KernelArmExportPCNTUser AND KernelArmExportPTMRUser)
         list(APPEND deps src/arch/arm/generic_ltimer.c)
