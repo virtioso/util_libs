@@ -98,6 +98,14 @@
 	#define INSTRUMENTED_CONST const
 #endif
 
+/* Weak definition of get_instance_name() - returns NULL when not in a CAmkES component.
+ * CAmkES-generated code provides a strong definition that returns the component name.
+ */
+WEAK const char *get_instance_name(void)
+{
+	return NULL;
+}
+
 #define STATIC_ASSERT(name, cond) \
 	typedef char assert_##name[(cond)? 1: -1]
 
@@ -307,6 +315,16 @@ static void put_ctx(zf_log_output_ctx *const ctx)
 #endif
 }
 
+static void put_component_prefix(zf_log_output_ctx *const ctx)
+{
+	const char *name = get_instance_name();
+	if (name != NULL)
+	{
+		int n = snprintf(ctx->p, nprintf_size(ctx), "%s: ", name);
+		put_nprintf(ctx, n);
+	}
+}
+
 static void put_tag(zf_log_output_ctx *const ctx, const char *const tag)
 {
 	const char *ch;
@@ -429,6 +447,7 @@ void _zf_log_write_d(const char *const func,
 	va_list va;
 	va_start(va, fmt);
 	put_ctx(&ctx);
+	put_component_prefix(&ctx);
 	put_tag(&ctx, tag);
 	put_src(&ctx, func, file, line);
 	put_msg(&ctx, fmt, va);
@@ -443,6 +462,7 @@ void _zf_log_write(const int lvl, const char *const tag,
 	va_list va;
 	va_start(va, fmt);
 	put_ctx(&ctx);
+	put_component_prefix(&ctx);
 	put_tag(&ctx, tag);
 	put_msg(&ctx, fmt, va);
 	g_output_cb(&ctx);
@@ -459,6 +479,7 @@ void _zf_log_write_mem_d(const char *const func,
 	va_list va;
 	va_start(va, fmt);
 	put_ctx(&ctx);
+	put_component_prefix(&ctx);
 	put_tag(&ctx, tag);
 	put_src(&ctx, func, file, line);
 	put_msg(&ctx, fmt, va);
@@ -475,6 +496,7 @@ void _zf_log_write_mem(const int lvl, const char *const tag,
 	va_list va;
 	va_start(va, fmt);
 	put_ctx(&ctx);
+	put_component_prefix(&ctx);
 	put_tag(&ctx, tag);
 	put_msg(&ctx, fmt, va);
 	g_output_cb(&ctx);
