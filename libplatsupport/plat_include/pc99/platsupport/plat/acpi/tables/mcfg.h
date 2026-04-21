@@ -10,8 +10,8 @@
 typedef struct acpi_mcfg_desc {
     uint64_t  address;
     uint16_t segment;
-    uint8_t  bus_end;
     uint8_t  bus_start;
+    uint8_t  bus_end;
     uint8_t  res[4];
 } acpi_mcfg_desc_t;
 

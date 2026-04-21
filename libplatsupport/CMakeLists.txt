@@ -52,7 +52,7 @@ if((KernelPlatformQEMUArmVirt AND NOT (KernelArmExportPCNTUser AND KernelArmExpo
    OR KernelPlatformRocketchip
    OR KernelPlatformRocketchipZCU102
    OR KernelPlatformCheshire
-   OR (SIMULATION AND (KernelArchRiscV OR KernelArchARM))
+   OR (SIMULATION AND (KernelArchRiscV OR KernelArchARM) AND NOT KernelPlatformQEMUArmVirt)
 )
     set(LibPlatSupportHaveTimer OFF)
 else()
